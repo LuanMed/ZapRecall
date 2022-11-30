@@ -1,65 +1,63 @@
 import arrow from "../assets/seta_play.png"
 import turn from "../assets/seta_virar.png"
-import rigth from "../assets/icone_certo.png"
+import right from "../assets/icone_certo.png"
 import almost from "../assets/icone_quase.png"
 import wrong from "../assets/icone_erro.png"
 import styled from "styled-components"
 import { useState } from "react";
 
-export default function Flashcard({ card, index, completedCounter, setCompletedCounter }) {
+export default function Flashcard({ card, index, completedCounter, setCompletedCounter, completedArray }) {
     const [CurrentClass, setCurrentClass] = useState(Question);
     const [text, setText] = useState(`Pergunta ${index + 1}`)
     const [clicked, setClicked] = useState([]);
     const [image, setImage] = useState(arrow);
-    const [tagImg, setTagImg] = useState(<img src={arrow} alt="seta" onClick={() => openQuestion()} />)
+    const [tagImg, setTagImg] = useState(<img src={arrow} alt="seta" data-test="play-btn" onClick={() => openQuestion()} />)
 
     function openQuestion() {
-        if (CurrentClass == Question) {
-            setCurrentClass(OpenQuestion);
-            setText(card.question);
-            setTagImg(<img src={turn} alt="seta" onClick={() => reviewAnswer()} />);
-        } else if (text == card.answer) {
-            setCurrentClass(Question);
-            setText(`Pergunta ${index + 1}`);
-            setImage(arrow)
-        }
-
-
-        setCompletedCounter(completedCounter + 1);
+        setCurrentClass(OpenQuestion);
+        setText(card.question);
+        setTagImg(<img src={turn} alt="seta" data-test="turn-btn" onClick={() => reviewAnswer()} />);
     }
 
     function reviewAnswer() {
         setText(card.answer);
         setTagImg(
             <ConteinerButton>
-                <RedButton onClick={redAnswer}>Não lembrei</RedButton>
-                <YellowButton onClick={yellowAnswer}>Quase não lembrei</YellowButton>
-                <GreenButton onClick={greenAnswer}>Zap!</GreenButton>
+                <RedButton data-test="no-btn" onClick={redAnswer}>Não lembrei</RedButton>
+                <YellowButton data-test="partial-btn" onClick={yellowAnswer}>Quase não lembrei</YellowButton>
+                <GreenButton data-test="zap-btn" onClick={greenAnswer}>Zap!</GreenButton>
             </ConteinerButton>
         )
     }
 
-    function redAnswer(){
+    function redAnswer() {
         setText(`Pergunta ${index + 1}`);
-        setTagImg(<img src={wrong} alt="wrong"/>)
+        setTagImg(<img data-test="no-icon" src={wrong} alt="wrong" />)
         setCurrentClass(AnsweredR);
+        completedArray.push("done");
+        setCompletedCounter(completedArray.length)
     }
 
-    function yellowAnswer(){
+    function yellowAnswer() {
         setText(`Pergunta ${index + 1}`);
-        setTagImg(<img src={almost} alt="wrong"/>)
+        setTagImg(<img data-test="partial-icon" src={almost} alt="almost" />)
         setCurrentClass(AnsweredY);
+        completedArray.push("done");
+        setCompletedCounter(completedArray.length)
     }
 
-    function greenAnswer(){
+    function greenAnswer() {
         setText(`Pergunta ${index + 1}`);
-        setTagImg(<img src={rigth} alt="wrong"/>)
+        setTagImg(<img data-test="zap-icon" src={right} alt="right" />)
         setCurrentClass(AnsweredG);
+        completedArray.push("done");
+        setCompletedCounter(completedArray.length)
     }
+
 
     return (
-        <CurrentClass key={index} >
-            <p>{text}</p>
+        <CurrentClass key={index} data-test="flashcard" >
+            <p data-test="flashcard-text">{text}</p>
             {tagImg}
         </CurrentClass>
     )

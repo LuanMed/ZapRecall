@@ -8,13 +8,14 @@ import { useState } from "react";
 
 
 export default function App() {
-  const [completedCounter, setCompletedCounter] = useState(0)
-
+  const completedArray = [];
+  const [completedCounter, setCompletedCounter] = useState(completedArray.length);
+  
   return (
     <ConteinerApp>
       <GlobalStyle />
       <Header />
-      <Deck cards={cards} completedCounter={completedCounter} setCompletedCounter={setCompletedCounter}/>
+      <Deck cards={cards} completedCounter={completedCounter} setCompletedCounter={setCompletedCounter} completedArray={completedArray}/>
       <Footer completedCounter={completedCounter} cards={cards}/>
     </ConteinerApp>
   );
