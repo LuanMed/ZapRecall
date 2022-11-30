@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export default function Footer(){
+export default function Footer({completedCounter, cards}){
     return (
         <ConteinerFooter>
-            <p>0/4 CONCLUÍDOS</p>
+            <p>{completedCounter}/{cards.length} CONCLUÍDOS</p>
         </ConteinerFooter>
     )
 }

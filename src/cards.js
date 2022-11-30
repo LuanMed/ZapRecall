@@ -1,12 +1,12 @@
 const cards = [
-	{ question: "O que é JSX?", answer: "Uma extensão da linguagem JavaScript" },
-	{ question: "O React é __", answer: "Uma biblioteca JavaScript para construção de interfaces" },
-	{ question: "Componentes devem iniciar com __", answer: "Letra maiúscula" },
-	{ question: "Podemos colocar __ dentro do JSX", answer: "expressões" },
-	{ question: "O ReactDOM nos ajuda __", answer: "Interagindo com a DOM para colocar componentes React na mesma" },
-	{ question: "Usamos o npm para __", answer: "Gerenciar os pacotes necessários e suas dependências" },
-	{ question: "Usamos props para __", answer: "Passar diferentes informações para componentes" },
-	{ question: "Usamos estado (state) para __", answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
+	{ question: "Quais os pokemon iniciais da 1ª geração?", answer: "Bulbassauro, Charmander e Squirtle" },
+	{ question: "Quais os pokemon iniciais da 2ª geração?", answer: "Chikorita, Totodile e Cyndaquil" },
+	{ question: "Quais os pokemon iniciais da 3ª geração?", answer: "Treecko, Torchic e Mudkip" },
+	{ question: "Quais os pokemon iniciais da 4ª geração?", answer: "Turtwig, Chimchar e Piplup" },
+	{ question: "Quais os pokemon iniciais da 5ª geração?", answer: "Snivy, Tepig e Oshawott" },
+	{ question: "Quais os pokemon iniciais da 6ª geração?", answer: "Chespin, Fennekin e Froakie " },
+	{ question: "Quais os pokemon iniciais da 7ª geração?", answer: "Rowlet, Litten e Popplio" },
+	{ question: "Quais os pokemon iniciais da 8ª geração?", answer: "Grookey, Scorbunny e Sobble" }
 ];
 
 export default cards;
