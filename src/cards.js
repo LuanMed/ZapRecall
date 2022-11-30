@@ -6,7 +6,8 @@ const cards = [
 	{ question: "Quais os pokemon iniciais da 5ª geração?", answer: "Snivy, Tepig e Oshawott" },
 	{ question: "Quais os pokemon iniciais da 6ª geração?", answer: "Chespin, Fennekin e Froakie " },
 	{ question: "Quais os pokemon iniciais da 7ª geração?", answer: "Rowlet, Litten e Popplio" },
-	{ question: "Quais os pokemon iniciais da 8ª geração?", answer: "Grookey, Scorbunny e Sobble" }
+	{ question: "Quais os pokemon iniciais da 8ª geração?", answer: "Grookey, Scorbunny e Sobble" },
+	{ question: "Quais os pokemon iniciais da 9ª geração?", answer: "Sprigatito, Fuecoco e Quaxly" }
 ];
 
 export default cards;
