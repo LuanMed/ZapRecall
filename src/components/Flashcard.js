@@ -39,7 +39,7 @@ export default function Flashcard({ card, index, setCompletedCounter, completedA
         setDecoration("line-through");
         completedArray.push("done");
         setCompletedCounter(completedArray.length);
-        auxAnswer.push(<img key={index} src={wrong}/>)
+        auxAnswer.push(<img data-test="no-icon" key={index} src={wrong}/>)
         setAnswerRow(auxAnswer);
         setIncludesWrong(true);
     }
@@ -52,7 +52,7 @@ export default function Flashcard({ card, index, setCompletedCounter, completedA
         setDecoration("line-through");
         completedArray.push("done");
         setCompletedCounter(completedArray.length);
-        auxAnswer.push(<img key={index} src={almost}/>)
+        auxAnswer.push(<img data-test="partial-icon" key={index} src={almost}/>)
         setAnswerRow(auxAnswer);
     }
 
@@ -64,7 +64,7 @@ export default function Flashcard({ card, index, setCompletedCounter, completedA
         setDecoration("line-through");
         completedArray.push("done");
         setCompletedCounter(completedArray.length);
-        auxAnswer.push(<img key={index} src={right}/>)
+        auxAnswer.push(<img data-test="zap-icon" key={index} src={right}/>)
         setAnswerRow(auxAnswer);
     }
 

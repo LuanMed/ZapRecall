@@ -7,7 +7,7 @@ export default function Footer({ completedCounter, cards, answerRow, includesWro
     function Feedback() {
         if (includesWrong) {
             return (
-                <ContainerFeedBack>
+                <ContainerFeedBack data-test="finish-text">
                     <div>
                         <img src={sad} />
                         <p><strong>Putz...</strong></p>
@@ -17,7 +17,7 @@ export default function Footer({ completedCounter, cards, answerRow, includesWro
             )
         } else {
             return (
-                <ContainerFeedBack>
+                <ContainerFeedBack data-test="finish-text">
                     <div>
                         <img src={party} />
                         <p><strong>Parabéns!</strong></p>
