@@ -6,7 +6,7 @@ import wrong from "../assets/icone_erro.png"
 import styled from "styled-components"
 import { useState } from "react";
 
-export default function Flashcard({ card, index, completedCounter, setCompletedCounter, completedArray, setAnswerRow, answerRow, auxAnswer}) {
+export default function Flashcard({ card, index, setCompletedCounter, completedArray, setAnswerRow, answerRow, auxAnswer, setIncludesWrong}) {
     const [CurrentClass, setCurrentClass] = useState(Question);
     const [text, setText] = useState(`Pergunta ${index + 1}`);
     const [tagImg, setTagImg] = useState(<img src={arrow} alt="seta" data-test="play-btn" onClick={() => openQuestion()} />);
@@ -41,6 +41,7 @@ export default function Flashcard({ card, index, completedCounter, setCompletedC
         setCompletedCounter(completedArray.length);
         auxAnswer.push(<img key={index} src={wrong}/>)
         setAnswerRow(auxAnswer);
+        setIncludesWrong(true);
     }
 
     function yellowAnswer() {

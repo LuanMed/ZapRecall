@@ -23,5 +23,5 @@ const ConteinerApp = styled.div`
   align-items: center;
   margin: 0px;
   padding: 0px;
-  padding-bottom: 75px;
+  padding-bottom: 155px;
 `

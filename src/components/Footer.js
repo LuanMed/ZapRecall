@@ -1,20 +1,45 @@
 import styled from "styled-components";
-import right from "../assets/icone_certo.png"
-import almost from "../assets/icone_quase.png"
-import wrong from "../assets/icone_erro.png"
+import party from "../assets/party.png";
+import sad from "../assets/sad.png"
 
-export default function Footer({ completedCounter, cards, answerRow}) {
+export default function Footer({ completedCounter, cards, answerRow, includesWrong }) {
+
+    function Feedback() {
+        if (includesWrong) {
+            return (
+                <ContainerFeedBack>
+                    <div>
+                        <img src={sad} />
+                        <p><strong>Putz...</strong></p>
+                    </div>
+                    <p>Ainda faltam alguns... Mas não desanime!</p>
+                </ContainerFeedBack>
+            )
+        } else {
+            return (
+                <ContainerFeedBack>
+                    <div>
+                        <img src={party} />
+                        <p><strong>Parabéns!</strong></p>
+                    </div>
+                    <p>Você não esqueceu de nenhum flashcard!</p>
+                </ContainerFeedBack>
+            )
+        }
+    }
+
     return (
-        <ConteinerFooter>
+        <ContainerFooter>
+            {completedCounter == cards.length ? <Feedback /> : ''}
             <p data-test="footer">{completedCounter}/{cards.length} CONCLUÍDOS</p>
-            <ConteinerImage>
-                {answerRow.map((answer, index) => answer)}
-            </ConteinerImage>
-        </ConteinerFooter>
+            <ContainerImage>
+                {answerRow.map((answer) => answer)}
+            </ContainerImage>
+        </ContainerFooter>
     )
 }
 
-const ConteinerFooter = styled.footer`
+const ContainerFooter = styled.footer`
     width: 100%;
     min-height: 50px;
     background-color: #FFFFFF;
@@ -35,6 +60,26 @@ const ConteinerFooter = styled.footer`
     }
 `
 
-const ConteinerImage = styled.div`
+const ContainerImage = styled.div`
     
+`
+
+const ContainerFeedBack = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 200px;
+    margin-bottom: 20px;
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 15px;
+        img{
+            margin: auto 10px auto 0;
+        }
+    }
 `
