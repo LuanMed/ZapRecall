@@ -6,12 +6,13 @@ import wrong from "../assets/icone_erro.png"
 import styled from "styled-components"
 import { useState } from "react";
 
-export default function Flashcard({ card, index, completedCounter, setCompletedCounter, completedArray }) {
+export default function Flashcard({ card, index, completedCounter, setCompletedCounter, completedArray, setAnswerRow, answerRow, auxAnswer}) {
     const [CurrentClass, setCurrentClass] = useState(Question);
     const [text, setText] = useState(`Pergunta ${index + 1}`);
     const [tagImg, setTagImg] = useState(<img src={arrow} alt="seta" data-test="play-btn" onClick={() => openQuestion()} />);
     const [textColor, setTextColor] = useState("#333333");
     const [decoration, setDecoration] = useState('none');
+    let aux = [...answerRow];
 
     function openQuestion() {
         setCurrentClass(OpenQuestion);
@@ -37,7 +38,9 @@ export default function Flashcard({ card, index, completedCounter, setCompletedC
         setTextColor("#FF3030");
         setDecoration("line-through");
         completedArray.push("done");
-        setCompletedCounter(completedArray.length)
+        setCompletedCounter(completedArray.length);
+        auxAnswer.push(<img key={index} src={wrong}/>)
+        setAnswerRow(auxAnswer);
     }
 
     function yellowAnswer() {
@@ -47,7 +50,9 @@ export default function Flashcard({ card, index, completedCounter, setCompletedC
         setTextColor("#FF922E");
         setDecoration("line-through");
         completedArray.push("done");
-        setCompletedCounter(completedArray.length)
+        setCompletedCounter(completedArray.length);
+        auxAnswer.push(<img key={index} src={almost}/>)
+        setAnswerRow(auxAnswer);
     }
 
     function greenAnswer() {
@@ -57,7 +62,9 @@ export default function Flashcard({ card, index, completedCounter, setCompletedC
         setTextColor("#2FBE34");
         setDecoration("line-through");
         completedArray.push("done");
-        setCompletedCounter(completedArray.length)
+        setCompletedCounter(completedArray.length);
+        auxAnswer.push(<img key={index} src={right}/>)
+        setAnswerRow(auxAnswer);
     }
 
     return (
