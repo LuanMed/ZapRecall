@@ -1,22 +1,15 @@
-import GlobalStyle from "./GlobalStyle";
 import styled from "styled-components";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Deck from "./components/Deck";
-import cards from "./cards";
 import { useState } from "react";
+import MainScreen from "./components/MainScreen";
+import WelcomeScreen from "./components/WelcomeScreen";
 
 
 export default function App() {
-  const completedArray = [];
-  const [completedCounter, setCompletedCounter] = useState(completedArray.length);
+  const [started, setStarted] = useState(false);
   
   return (
     <ConteinerApp>
-      <GlobalStyle />
-      <Header />
-      <Deck cards={cards} completedCounter={completedCounter} setCompletedCounter={setCompletedCounter} completedArray={completedArray}/>
-      <Footer completedCounter={completedCounter} cards={cards}/>
+      {started ? <MainScreen/> : <WelcomeScreen setStarted={setStarted}/>}
     </ConteinerApp>
   );
 }
@@ -24,6 +17,7 @@ export default function App() {
 const ConteinerApp = styled.div`
   background-color: #FB6B6B;
   width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

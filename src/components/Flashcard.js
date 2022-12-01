@@ -8,10 +8,10 @@ import { useState } from "react";
 
 export default function Flashcard({ card, index, completedCounter, setCompletedCounter, completedArray }) {
     const [CurrentClass, setCurrentClass] = useState(Question);
-    const [text, setText] = useState(`Pergunta ${index + 1}`)
-    const [clicked, setClicked] = useState([]);
-    const [image, setImage] = useState(arrow);
-    const [tagImg, setTagImg] = useState(<img src={arrow} alt="seta" data-test="play-btn" onClick={() => openQuestion()} />)
+    const [text, setText] = useState(`Pergunta ${index + 1}`);
+    const [tagImg, setTagImg] = useState(<img src={arrow} alt="seta" data-test="play-btn" onClick={() => openQuestion()} />);
+    const [textColor, setTextColor] = useState("#333333");
+    const [decoration, setDecoration] = useState('none');
 
     function openQuestion() {
         setCurrentClass(OpenQuestion);
@@ -33,7 +33,9 @@ export default function Flashcard({ card, index, completedCounter, setCompletedC
     function redAnswer() {
         setText(`Pergunta ${index + 1}`);
         setTagImg(<img data-test="no-icon" src={wrong} alt="wrong" />)
-        setCurrentClass(AnsweredR);
+        setCurrentClass(Question);
+        setTextColor("#FF3030");
+        setDecoration("line-through");
         completedArray.push("done");
         setCompletedCounter(completedArray.length)
     }
@@ -41,7 +43,9 @@ export default function Flashcard({ card, index, completedCounter, setCompletedC
     function yellowAnswer() {
         setText(`Pergunta ${index + 1}`);
         setTagImg(<img data-test="partial-icon" src={almost} alt="almost" />)
-        setCurrentClass(AnsweredY);
+        setCurrentClass(Question);
+        setTextColor("#FF922E");
+        setDecoration("line-through");
         completedArray.push("done");
         setCompletedCounter(completedArray.length)
     }
@@ -49,14 +53,15 @@ export default function Flashcard({ card, index, completedCounter, setCompletedC
     function greenAnswer() {
         setText(`Pergunta ${index + 1}`);
         setTagImg(<img data-test="zap-icon" src={right} alt="right" />)
-        setCurrentClass(AnsweredG);
+        setCurrentClass(Question);
+        setTextColor("#2FBE34");
+        setDecoration("line-through");
         completedArray.push("done");
         setCompletedCounter(completedArray.length)
     }
 
-
     return (
-        <CurrentClass key={index} data-test="flashcard" >
+        <CurrentClass data-test="flashcard" textColor={textColor} decoration={decoration}>
             <p data-test="flashcard-text">{text}</p>
             {tagImg}
         </CurrentClass>
@@ -80,7 +85,11 @@ const Question = styled.li`
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        color: #333333;
+        color: ${props => props.textColor};
+        text-decoration: ${props => props.decoration};
+    }
+    img{
+        cursor: pointer;
     }
 `
 
@@ -129,7 +138,17 @@ const ConteinerButton = styled.div`
         border: 0px solid;
         padding:5px;
         box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+        opacity: 95%;
         cursor: pointer;
+        &:hover{
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            transform: translateY(-3px);
+            opacity: 100%;
+        }
+        &:active{
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            transform: translateY(1px);
+        }
     }
   `
 
@@ -141,68 +160,4 @@ const YellowButton = styled.button`
 `
 const GreenButton = styled.button`
     background-color: #2FBE34;
-`
-
-const AnsweredR = styled.li`
-    width: 300px;
-    height: 35px;
-    background-color: #FFFFFF;
-    margin: 12px;
-    padding: 15px;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    p{
-        font-family: 'Recursive';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 19px;
-        color: #FF3030;
-        text-decoration: line-through
-    }
-`
-const AnsweredY = styled.li`
-    width: 300px;
-    height: 35px;
-    background-color: #FFFFFF;
-    margin: 12px;
-    padding: 15px;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    p{
-        font-family: 'Recursive';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 19px;
-        color: #FF922E;
-        text-decoration: line-through
-    }
-`
-const AnsweredG = styled.li`
-    width: 300px;
-    height: 35px;
-    background-color: #FFFFFF;
-    margin: 12px;
-    padding: 15px;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    p{
-        font-family: 'Recursive';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 19px;
-        color: #2FBE34;
-        text-decoration: line-through
-    }
 `
