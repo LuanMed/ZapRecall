@@ -5,7 +5,7 @@
 </br>
 
 ## ✏️ Description
-<p align="justify" >A game that give you a hidden word for you to discover it, choosing letters and guessing the word. If you choose six wrong letters, the game ends and you loose.  The feedback for wrong letters and for game over comes throw images from a hanguing dummy.</p>
+<p align="justify" >Flashcards are cards that have a question/statement on the front and an answer on the back. You can use them to train your memory with Active Recall and Spaced Repetition methodologies. The idea is to read the question or statement and try to remember the answer. When faced with it, depending on the effort required to respond or not to the flashcard, you become aware of which contents are fresh in your memory and which are not, so you can frequently practice the contents that are not.</p>
 
 </br>
 
